@@ -1,0 +1,22 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-2" *ngFor="let task of tasks">
+        <div class="card shadow-lg p-2 mt-3">
+          <div class="card-header text-center">
+            <h1>{{task.title}}</h1>
+          </div>
+          <div class="card-body text-center">
+            <p class="card-text">{{task.description}}</p>
+            <small>{{task.created_at}}</small>
+          </div>
+          <div class="card-footer text-center">
+            <span><a class="btn btn-primary">Show</a></span>
+            <span><a class="btn btn-warning text-white">Edit</a></span>
+            <span><a (click)="onRemove(task)" class="btn btn-danger">Delete</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
