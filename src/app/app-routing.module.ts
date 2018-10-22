@@ -2,11 +2,18 @@ import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as fromTasks from './tasks';
+import { RegisterComponent } from './home/register/register.component';
+import { LoginComponent } from './home/login/login.component';
+import { HomeComponent } from './home/home.component';
 
 const enableTracing = true && !environment.production;
 
 const routes: Routes = [
-  {path: '', redirectTo: 'tasks', pathMatch: 'full'},
+  {path: '', component: HomeComponent,
+    children: [
+      {path: 'register', component: RegisterComponent},
+      {path: 'login', component: LoginComponent}
+    ]},
   {path: 'tasks',
     children: [
       {path: '', component: fromTasks.TaskListComponent, pathMatch: 'full'},
