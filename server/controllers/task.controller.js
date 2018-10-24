@@ -21,7 +21,7 @@ module.exports = {
         .then(task => res.json(task))
         .catch(console.log('Error in new'));
   },
-  delete(req, res) {
+  destroy(req, res) {
     Task.findByIdAndRemove(req.params.id)
         .then(task => res.json(task))
         .catch(console.log('Error in delete'));

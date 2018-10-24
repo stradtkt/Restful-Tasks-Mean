@@ -1,3 +1,40 @@
-<p>
-  register works!
-</p>
+<div class="card p-5 mt-5 mb-5">
+  <div class="card-header text-center">
+    <h1>Register</h1>
+  </div>
+  <div class="card-body">
+    <form (submit)="form.valid && onSubmit($event, user, form)" #form="ngForm">
+      <div class="form-group">
+        <input type="text" name="username" #username="ngModel" [(ngModel)]="user.username" class="form-control" required minlength="3" placeholder="Username">
+        <div *ngIf="(username.touched || username.dirty) && username.errors">
+          <div *ngIf="username?.errors.required" class="bg-danger rounded shadow-lg mt-2">
+            <span class="text-white text-center">Your Username is required</span>
+          </div>
+          <div *ngIf="username?.errors.minlength" class="bg-danger shadow-lg rounded mt-2">
+            <span class="text-white text-center">Your username must be at least {{username?.errors.minlength.requiredLength}} characters long. You have {{username?.errors.minlength.actualLength}}.</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required placeholder="Email">
+        <div *ngIf="(email.touched || email.dirty) && email.errors">
+          <div *ngIf="email?.errors.required" class="bg-danger rounded shadow-lg mt-2">
+            <span class="text-white text-center">Your email is required</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required minlength="4" placeholder="Password">
+        <div *ngIf="(password.touched || password.dirty) && password.errors">
+          <div *ngIf="password?.errors.required" class="bg-danger rounded shadow-lg mt-2">
+            <span class="text-white text-center">Your password is required</span>
+          </div>
+          <div *ngIf="password?.errors.minlength" class="bg-danger shadow-lg rounded mt-2">
+            <span class="text-white text-center">Your password must be at least {{password?.errors.minlength.requiredLength}} characters long. You have {{password?.errors.minlength.actualLength}}.</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-info" *ngIf="form.valid">Register</button>
+    </form>
+  </div>
+</div>
